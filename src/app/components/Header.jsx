@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { Modal } from "./Modal";
 import TextInput from "./TextInput";
@@ -64,7 +65,14 @@ export default function Header({}) {
             <div className="flex-shrink-0 ml-2 ma-4">
               <div className="text-center text-gray-800 mt-1">
                 <div>
-                  <Link href="#">Logo aqui</Link>
+                  <Link href="/">
+                    <Image
+                      src="/img/logobgwhite.png"
+                      width={70}
+                      height={70}
+                      alt="logo"
+                    />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -179,9 +187,7 @@ export default function Header({}) {
                 href="/auth/register"
                 className="rounded-md flex items-center p-4"
               >
-                <p className="text-gray-800 text-md lg:text-lg">
-                  Crear una cuenta
-                </p>
+                <p className="text-gray-800 text-md lg:text-lg">Crear cuenta</p>
               </Link>
             </div>
           </div>

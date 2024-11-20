@@ -17,7 +17,7 @@ export default forwardRef(function TextInput(
       {...props}
       type={type}
       value={value}
-      className="bg-white border boder-2 border-gray-500 rounded-md p-2 mb-4 focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500 transition ease-in-out duration-150 w-full"
+      className="bg-white border boder-2 border-gray-300 rounded-md p-2 mb-4 focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500 transition ease-in-out duration-150 w-full"
       ref={input}
     />
   );
