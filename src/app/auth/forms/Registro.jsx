@@ -10,9 +10,11 @@ import LoaderCircle from "@/app/components/Loarder";
 import { message } from "@/app/components/alerts/formattingErrors";
 import { Toast } from "@/app/components/alerts/sweetAlerts";
 import { useRouter } from "next/navigation";
+import {useAuth} from "@/context/AuthContext"
 
 export default function Registro({}) {
   const router = useRouter();
+  const {register} = useAuth()
   const [processing, setProcessing] = useState(false);
   const [visible, setVisible] = useState(false);
   const [form, setForm] = useState({
@@ -27,8 +29,13 @@ export default function Registro({}) {
     email: "",
     password: "",
     password_confirmation: "",
-    role: 3,
+    role: null,
   });
+  // const roles = [
+  //   {id: 1, name: "Administrador"},
+  //   {id: 2, name: "Docente"},
+  //   {id: 3, name: "Estudiante"},
+  // ]
 
   const handleFormChange = (key, value) => {
     setForm((prevForm) => ({
@@ -39,41 +46,32 @@ export default function Registro({}) {
 
   const submit = async (event) => {
     event.preventDefault();
+    // console.log(form)
     try {
-      setVisible(true);
-      const res = await axios.post("/api/auth/register", form);
-      if (res.status === 201) {
-        reset();
-        Toast(res.data.message, "success");
-        router.push("/");
-      }
-    } catch (error) {
-      // console.log(error);
-      Toast(message(error.response?.data?.errors), "error");
-    } finally {
-      setVisible(false);
+      const data = await register(form)
+      reset()
+      Toast(data.message, "success")
+      router.push('/') 
+    } catch(error){
+      // console.log(error)
+      Toast(message(error), "error") 
     }
-
-    // setVisible(true);
-    // await axios
-    //   .post("/api/auth/register", form)
-    //   .then((res) => {
-    //     console.log(res);
+    // const data = await register(form)
+    // console.log(data)
+    // try {
+    //   setVisible(true);
+    //   const res = await axios.post("/api/auth/register", form);
+    //   if (res.status === 201) {
     //     reset();
-    //     if (res.status === 201) {
-    //       Toast(res.data.message, "success");
-    //       redirect("/");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     if (error) {
-    //       console.log(error.response?.data);
-    //       Toast(message(error.response?.data?.errors), "error");
-    //     }
-    //   })
-    //   .finally(() => {
-    //     setVisible(false);
-    //   });
+    //     Toast(res.data.message, "success");
+    //     router.push("/");
+    //   }
+    // } catch (error) {
+    //   // console.log(error);
+    //   Toast(message(error.response?.data?.errors), "error");
+    // } finally {
+    //   setVisible(false);
+    // }
   };
 
   const reset = () => {
@@ -89,6 +87,7 @@ export default function Registro({}) {
       email: "",
       password: "",
       password_confirmation: "",
+      role: null  //quitar
     }));
   };
 
@@ -172,7 +171,19 @@ export default function Registro({}) {
           required
         />
       </div>
+      {/* quitarrr!!!! */}
+      {/* <div className="mt-4">
+        <InputLabel htmlFor="type_user" value="Rol de usuario"/>
 
+        <select id="my_type_user" className="w-full mt-1 block" value={form.role || ""} onChange={(e) => handleFormChange("role", parseInt(e.target.value, 10))}>
+          <option value="">Seleccione una opción</option>
+          {roles.map((option) => (
+            <option key={option.id} value={option.id}>
+              {option.name}
+            </option>
+          ))}
+        </select>
+      </div> */}
       <div className="flex items-center justify-end mt-4">
         {/*<Link*/}
         {/*    href={route('login')}*/}

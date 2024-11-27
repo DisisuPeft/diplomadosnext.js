@@ -4,9 +4,6 @@ import Link from "next/link";
 import Registro from "../forms/Registro";
 import axios from "axios";
 
-function setRegistro(form) {
-  console.log(form);
-}
 
 export default function Register({}) {
   return (
@@ -26,7 +23,7 @@ export default function Register({}) {
         <div className="rounded-lg text-center w-full">
           <div className="relative w-full h-[945px] overflow-hidden mb-2">
             <Image
-              src="/img/people-dressed.jpeg" // Cambia esto por la ruta de tu imagen
+              src="/img/people-dressed.jpeg"
               alt="Imagen del slogan"
               width={900}
               height={200}

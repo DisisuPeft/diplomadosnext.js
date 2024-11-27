@@ -179,15 +179,15 @@ export default function Header({}) {
                 href="/auth/login"
                 className="rounded-md flex items-center p-4"
               >
-                <p className="text-gray-800 text-md lg:text-lg">
+                <p className="text-md lg:text-lg">
                   Iniciar sesión
                 </p>
               </Link>
               <Link
                 href="/auth/register"
-                className="rounded-md flex items-center p-4"
+                className="rounded-md flex items-center p-4 bg-blue-600"
               >
-                <p className="text-gray-800 text-md lg:text-lg">Crear cuenta</p>
+                <p className="text-white text-md lg:text-lg">Crear cuenta</p>
               </Link>
             </div>
           </div>
